@@ -4,29 +4,32 @@ import { mount } from "@vue/test-utils"
 import HelloWorld from "../HelloWorld.vue"
 
 describe("HelloWorld", () => {
+  // setup
   const viewText = 'Hello from inside HelloWorld'
+  const viewId = 'testViewId'
+  const elementName = 'SPAN'
 
-  // it('Renders properly', () => {
-  //   const wrapper = mount(HelloWorld, {
-  //     props: {
-  //       msg: "Message from Vitest"
-  //     }
-  //   })
-  //   expect(wrapper.text()).toContain("Message from Vitest")
-  // })
-
-  it('Renders span correctly', async () => {
-    // setup
-    const viewId = 'testViewId'
-
+  // assert
+  it('Renders HelloWorld element correctly', async () => {
     render(HelloWorld, {
-      props: { element: "span", id: viewId },
+      props: { element: elementName, id: viewId },
       slots: { default: viewText }
     })
 
     const view = await screen.findByText(viewText)
 
-    // assert
     expect(view.id).toBe(viewId)
+    expect(view.innerHTML).toBe(viewText)
+    expect(view.nodeName).toBe(elementName)
+  })
+
+  it('Snapshot matches', () => {
+    const wrapper = render(HelloWorld, {
+      props: {
+        element: elementName
+      }
+    })
+
+    expect(wrapper).toMatchSnapshot()
   })
 })
