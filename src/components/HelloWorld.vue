@@ -1,38 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 defineProps<{ msg: string }>()
 
-const count = ref(0)
+async function init() {
+  // Get a reference to the container element
+  const container_ = document.querySelector('#scene-container');
+  // create a new world
+  //const world = new World(container_);
+  // start the animation loop
+  //world.start();
+}
+
+onMounted(() => {
+  init().catch((err) => console.error("onMounted Error", err))
+});
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <h1 class="m-5 p-y border-black">{{ msg }}</h1>
 
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
 
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>

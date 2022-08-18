@@ -17,6 +17,6 @@ You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/
 
 
 # npm install -D tailwindcss postcss autoprefixer
-# npx tailwindcss init
+# npx tailwindcss init -p
 # npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch
 # npm install --save @types/node
