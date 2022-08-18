@@ -15,13 +15,12 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
 
-
-## Initialize vite
+## Initialize project from scratch
 ```
 npm init vite
 ```
 
-## Styling with Tailwindcss
+### Styling with Tailwindcss
 ```
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
@@ -30,16 +29,29 @@ npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch
 > npm install --save @types/node
 ```
 
-## Unit testing w/ Vitest
+### Unit testing w/ Vitest
 ```
 npm install -D vitest
 npm install @vue/test-utils --save-dev
 npm i -D jsdom
+npm install -D @testing-library/vue
 ```
 
-add scripts to package.json
+'vitest/config' extends 'vite' config (https://www.angularfix.com/2022/05/vitest-defineconfig-does-not-exist-in.html)
 ```
-"test": "vitest",
+//vite.config.ts
+import { defineConfig } from 'vitest/config'
+```
+
+Alternative way is to use tripple slash reference
+```
+//vite.config.ts
+/// <reference types="vitest" />
+```
+
+Add scripts to package.json
+```
+"test:unit": "vitest --environment jsdom",
 "coverage": "vitest run --coverage",
 ```
 

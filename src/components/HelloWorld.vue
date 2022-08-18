@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-defineProps<{ msg: string }>()
+defineProps<{
+  element: string
+  ariaLabel?: string
+  isDisabled?: boolean
+}>()
 
 async function init() {
   // Get a reference to the container element
@@ -18,7 +22,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1 class="m-5 p-y border-black">{{ msg }}</h1>
-
-
+  <component :is="element" :aria-label="ariaLabel" :disabled="isDisabled" class="m-5 p-y border-black">
+    <slot></slot>
+  </component>
 </template>

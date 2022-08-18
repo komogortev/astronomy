@@ -1,6 +1,3 @@
-// *. 'vitest/config' extends import { defineConfig } from 'vite' (https://www.angularfix.com/2022/05/vitest-defineconfig-does-not-exist-in.html)
-// import { defineConfig } from 'vitest/config'
-// **. alternative
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
 
