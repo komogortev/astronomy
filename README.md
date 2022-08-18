@@ -16,7 +16,30 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
 
 
-# npm install -D tailwindcss postcss autoprefixer
-# npx tailwindcss init -p
-# npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch
-# npm install --save @types/node
+## Initialize vite
+```
+npm init vite
+```
+
+## Styling with Tailwindcss
+```
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch
+<!-- to support path for vite.config.js at resolve.alias "'@': path.resolve(__dirname, './src')" -->
+> npm install --save @types/node
+```
+
+## Unit testing w/ Vitest
+```
+npm install -D vitest
+npm install @vue/test-utils --save-dev
+npm i -D jsdom
+```
+
+add scripts to package.json
+```
+"test": "vitest",
+"coverage": "vitest run --coverage",
+```
+
