@@ -9,7 +9,8 @@ export default defineConfig({
   base: '/astronomy/',
   test: {
     reporters: ["json", "verbose"],
-    globals: true
+    globals: true,
+    setupFiles: "src/setupTests.ts"
   },
   plugins: [vue()],
   resolve: {

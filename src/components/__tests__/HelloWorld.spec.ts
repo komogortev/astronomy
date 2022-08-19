@@ -1,7 +1,8 @@
-import { describe, it, expect } from "vitest"
+import { describe, it, test, expect } from "vitest"
 import { render, screen } from '@testing-library/vue'
 import { mount } from "@vue/test-utils"
 import HelloWorld from "../HelloWorld.vue"
+import World from '../../core/constructors/World'
 
 describe("HelloWorld", () => {
   // setup
@@ -32,4 +33,13 @@ describe("HelloWorld", () => {
 
     expect(wrapper).toMatchSnapshot()
   })
+
+  test('World constructor mounts?', () => {
+    it('Is World constructor available?', () => {
+    })
+
+    it('', () => {
+    })
+  })
+
 })
