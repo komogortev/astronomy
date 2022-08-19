@@ -1,14 +1,28 @@
 <script setup lang="ts">
-import { p } from 'msw/lib/glossary-297d38ba';
-import { ref } from 'vue'
-const pokemons = ref([])
+import { ref, onUpdated } from 'vue'
+const pokemons = ref([
+  {
+    "name": "bulbasaur",
+    "url": "https://pokeapi.co/api/v2/pokemon/1/"
+  },
+  {
+    "name": "ivysaur",
+    "url": "https://pokeapi.co/api/v2/pokemon/2/"
+  }
+])
 
 async function getPokemon() {
   const data = await fetch('https://pokeapi.co/api/v2/pokemon')
   const pokemon = await data.json()
-  pokemon.value = pokemon.results
+  pokemons.value = pokemon.results
   console.log(pokemon)
 }
+
+onUpdated(() => {
+  if(pokemons) {
+    console.log(pokemons)
+  }
+})
 
 </script>
 
