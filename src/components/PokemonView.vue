@@ -18,12 +18,6 @@ async function getPokemon() {
   console.log(pokemon)
 }
 
-onUpdated(() => {
-  if(pokemons) {
-    console.log(pokemons)
-  }
-})
-
 </script>
 
 <template>
