@@ -24,8 +24,9 @@ onMounted(() => {
 
 <template>
   <component :is="element" :aria-label="ariaLabel" :disabled="isDisabled" class="m-5 p-y border-black">
-    <slot></slot>
 
-    <section id="scene-container"></section>
+    <slot id="scene-container"></slot>
+
+
   </component>
 </template>

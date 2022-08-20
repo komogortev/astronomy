@@ -5,23 +5,21 @@ import PokemonView from "../PokemonView.vue"
 
 describe("pokemonApi", () => {
   // setup
-  const viewText = 'Hello from inside pokemonApi HelloWorld'
-  const viewId = 'pokemonApiId'
+  const viewBtn = 'Get Pokemon'
   const elementName = 'SPAN'
 
   it('Renders PokemonView correctly', async () => {
     render(PokemonView, {
       props: {
-        element: 'div'
+        element: elementName,
       },
-      slots: { default: viewText }
     })
 
     //start call to api, return mock data, render data, test rendered data
-    const pokemon = await screen.findByText(viewText)
+    const pokemon = await screen.findByText(viewBtn)
     await fireEvent.click(pokemon)
-    const value: any = await screen.findByText(viewText)
+    const value: any = await screen.findByText('bulbasaur')
 
-    expect(value.innerHTML).toBe('testing')
+    expect(value.innerHTML).toBe('bulbasaur')
   })
 })

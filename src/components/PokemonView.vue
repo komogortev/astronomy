@@ -27,6 +27,6 @@ async function getPokemon() {
 
   <div v-for="(pokemon, idx) in pokemons"
     class="m-5 p-y border-black border-2 border-solid border-black text-green p-6">
-    <h4 :key="idx" class="text-green">{{ JSON.stringify(pokemon) }}</h4>
+    <h4 :key="idx" class="text-green">{{ pokemon.name }}</h4>
   </div>
 </template>
