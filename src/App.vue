@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import PokemonView from './components/PokemonView.vue'
-import SpecialUpload from './components/special-upload.vue'
+// import SpecialUpload from './components/special-upload.vue'
 </script>
 
 <template>
@@ -11,5 +11,5 @@ import SpecialUpload from './components/special-upload.vue'
   <PokemonView element="div" class="border-2 border-solid border-black text-green p-6 text-4xl">
   </PokemonView>
 
-  <special-upload></special-upload>
+  <special-uploader></special-uploader>
 </template>
