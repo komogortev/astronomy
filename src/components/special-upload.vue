@@ -2,10 +2,12 @@
 import { ref, inject } from 'vue'
 
 const props = defineProps<{
-  customImg?: string
+  customImg?: string;
 }>()
 
-const imgSrc = ref(props.customImg)
+const img = inject("specialUploadImage") as string;
+const imgVal = img ?? props.customImg;
+const imgSrc = ref(imgVal)
 
 function fileProcess(file: File) {
   imgSrc.value = URL.createObjectURL(file)
@@ -13,8 +15,10 @@ function fileProcess(file: File) {
 
 function fileUpload(event: Event): void {
   const target = event.target as HTMLInputElement
-  const file = target.files[0]
-  fileProcess(file)
+  if (target.files !== null) {
+    const file = target.files[0]
+    fileProcess(file)
+  }
 }
 
 </script>

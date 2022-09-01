@@ -1,18 +1,18 @@
 import { describe, it, test, expect } from "vitest"
 import { render, screen } from '@testing-library/vue'
 import { mount } from "@vue/test-utils"
-import HelloWorld from "../HelloWorld.vue"
-import World from '../../core/constructors/World'
+import WorldScene from "../WorldScene.vue"
+//import World from '../../core/constructors/World'
 
-describe("HelloWorld", () => {
+describe("WorldScene", () => {
   // setup
-  const viewText = 'Hello from inside HelloWorld'
+  const viewText = 'Hello from inside WorldScene'
   const viewId = 'testViewId'
   const elementName = 'SPAN'
 
   // assert
-  it('Renders HelloWorld element correctly', async () => {
-    render(HelloWorld, {
+  it.skip('Renders WorldScene element correctly', async () => {
+    render(WorldScene, {
       props: { element: elementName, id: viewId },
       slots: { default: viewText }
     })
@@ -24,8 +24,8 @@ describe("HelloWorld", () => {
     expect(view.nodeName).toBe(elementName)
   })
 
-  it('Snapshot matches', () => {
-    const wrapper = render(HelloWorld, {
+  it.skip('Snapshot matches', () => {
+    const wrapper = render(WorldScene, {
       props: {
         element: elementName
       }

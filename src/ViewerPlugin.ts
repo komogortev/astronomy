@@ -6,7 +6,8 @@ import { SpecialUploader } from "./components";
 export default {
   install: (app: App, options: { img: string }= { img: ""}) => {
     app.component("SpecialUploader", SpecialUploader);
-    app.provide("specialUplaoadImage", options.img)
+    // provide inject props
+    app.provide("specialUploadImage", options.img);
   }
 }
 
