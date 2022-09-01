@@ -69,7 +69,7 @@ describe("specialUpload", async () => {
       // changeEvent.target.value = file
       // assert file processing took place and preview shows image
 
-      expect(imagePreview.width).toBeGreaterThan(0)
+      expect(imagePreview.src).toBe(filePath)
     })
   })
 })
