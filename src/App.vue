@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WorldScene from './components/WorldScene.vue'
+import WorldScene from './components/world-scene.vue'
 import PokemonView from './components/PokemonView.vue'
 </script>
 

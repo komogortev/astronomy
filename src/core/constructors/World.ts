@@ -1,23 +1,24 @@
-interface WorldSceneInterface {
-  id: number
-  container: any,
-  start(): string,
+interface WorldSceneSettings {
+  // id: number,
+  // container: any,
+  // start(): string,
 
 }
 
-class WorldConstructor implements WorldSceneInterface {
-  id: number
-  container: any
+class WorldConstructor {
+  id: number;
+  container: any;
 
-  constructor(id: number, container: any) {
-    this.id = id
+  // initialize defined props
+  constructor(_id: number, container: any) {
+    this.id = _id
     this.container = container
-    console.log('World constructed', this.id)
   }
 
   start() {
+    console.log(this.id,  "World Scene started!")
     return `id: ${this.id}`
   }
 }
 
-export { WorldConstructor as World };
+export { WorldConstructor };

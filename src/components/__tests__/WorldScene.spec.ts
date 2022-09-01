@@ -1,7 +1,7 @@
 import { describe, it, test, expect } from "vitest"
 import { render, screen } from '@testing-library/vue'
 import { mount } from "@vue/test-utils"
-import WorldScene from "../WorldScene.vue"
+import WorldScene from "../world-scene.vue"
 //import World from '../../core/constructors/World'
 
 describe("WorldScene", () => {
