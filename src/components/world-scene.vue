@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { WorldConstructor } from '@/core/constructors/World';
+import { WorldConstructor as World } from '@/core/constructors/World';
 
 defineProps<{
   element: string
@@ -12,7 +12,7 @@ async function init() {
   // Get a reference to the container element
   const container_ = document.querySelector('#scene-container');
   // create a new world
-  const world = new WorldConstructor(1, container_);
+  const world = new World(container_);
   // start the animation loop
   world.start();
 }
@@ -24,6 +24,6 @@ onMounted(() => {
 
 <template>
   <component :is="element" :aria-label="ariaLabel" :disabled="isDisabled" class="m-5 p-y border-black">
-    <slot id="scene-container"></slot>
+    <section id="scene-container" class="m-5 p-y border-black"></section>
   </component>
 </template>

@@ -53,5 +53,8 @@ Add scripts to package.json
 ```
 "test:unit": "vitest --environment jsdom",
 "coverage": "vitest run --coverage",
+
+
+npm i --save-dev @types/three
 ```
 
