@@ -1,12 +1,12 @@
-//import { Scene, WebGLCubeRenderTarget, Color, FogExp2 } from 'three';
+import { Scene, WebGLCubeRenderTarget, Color, FogExp2 } from 'three';
 import * as THREE from 'three'
 
 import { AppSettings } from '../../globals'
 
 function createScene(renderer_) {
-  const scene = new THREE.Scene();
+  const scene = new Scene();
 
-  scene.fog = new THREE.FogExp2(0x000000, 0.00000025);
+  scene.fog = new FogExp2(0x000000, 0.00000025);
 
   // const texture = textureLoader.load(
   //   AppSettings.BG_MAP,
