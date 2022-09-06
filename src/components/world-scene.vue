@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { WorldConstructor as World } from '@/core/constructors/World';
+import { WorldConstructor as World } from '../core/constructors/World';
 
 defineProps<{
   element: string
@@ -10,7 +10,7 @@ defineProps<{
 
 async function init() {
   // Get a reference to the container element
-  const container_ = document.querySelector('#scene-container');
+  const container_: Element = document.querySelector('#scene-container')!;
   // create a new world
   const world = new World(container_);
   // start the animation loop

@@ -1,5 +1,4 @@
-const setSize = (container, camera, renderer) => {
-  //camera.aspect = container.clientWidth / container.clientHeight;
+const setSize = (container: Element, camera: any, renderer: any) => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
@@ -8,7 +7,7 @@ const setSize = (container, camera, renderer) => {
 };
 
 class Resizer {
-  constructor(container, camera, renderer) {
+  constructor(container: Element, camera: any, renderer: any) {
     // set initial size
     setSize(container, camera, renderer);
 

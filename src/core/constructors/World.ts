@@ -1,46 +1,42 @@
-import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import GUI from 'lil-gui';
 
-import { createRenderer } from '../systems/renderer';
 import { createScene } from '../components/scene';
 import { createPerspectiveCamera } from '../components/camera';
 import { createAmbientLight, createPointLight } from '../components/lights';
-import { Loop } from '../systems/Loop'
+import { createRenderer } from '../systems/renderer';
 import { Resizer } from '../systems/Resizer';
-
-import { createCube } from '../components/cube';
+import { Loop } from '../systems/Loop'
 import { Golem } from './Golem';
-import { Console } from 'console';
-
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 interface WorldSceneSettings {
-  // id: number,
-  // container: any,
-  // start(): string,
-
+  container: Element;
+  stats: any;
+  lilGui: any;
+  timeSpeedSetting: any;
+  controls: any;
 }
 
-let renderer_: any, scene_: any, camera_: any, golem: any, loop_: any;
+let renderer_: any, scene_: any, camera_: any, golem: any, loop_: any, textureLoader: any;
 
-class WorldConstructor {
-  container: HTMLElement;
+class WorldConstructor implements WorldSceneSettings {
+  container: Element;
   stats: any;
   lilGui: any;
   timeSpeedSetting: any;
   controls: any;
 
-  constructor(container: HTMLElement) {
+  constructor(container: Element) {
     // initialize defined earlier properties
-    this.container = container
-    this.stats = new Stats();
+    this.container = container;
+    this.stats = Stats();
     this.lilGui = new GUI();
     this.timeSpeedSetting = { speed: 1 }; // has to be an object for lilGui to accept as slider
 
     // Render, attach scene
     renderer_ = createRenderer();
-    scene_ = createScene(renderer_);
+    scene_ = createScene(renderer_, );
     this.container.appendChild(renderer_.domElement);
 
     // const ambLight_ = createAmbientLight(0xffffff, .5);

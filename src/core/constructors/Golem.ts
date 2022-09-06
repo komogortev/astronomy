@@ -12,9 +12,9 @@ class Golem {
   radius: number;
   widthSegments: number;
   heightSegments: number;
-  golemGeometry: any;
-  golemMaterial: any;
-  golemMesh: any;
+  golemGeometry: SphereGeometry;
+  golemMaterial: MeshNormalMaterial;
+  golemMesh: Mesh;
 
   constructor() {
     this.radius = 0.05
@@ -31,7 +31,7 @@ class Golem {
 
     this.golemMesh = new Mesh(this.golemGeometry, this.golemMaterial);
     this.golemMesh.name = 'Golem Mesh'
-    //this.golemMesh.mesh.position.set(0, 0, 0);
+    this.golemMesh.position.set(0, 0, 0);
   }
 
   get mesh() {

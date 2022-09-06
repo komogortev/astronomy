@@ -1,20 +1,18 @@
 import { PerspectiveCamera } from "three";
 
-function createPerspectiveCamera(fov: number=75, name: string="perspective camera") {
-
-  const camera = new PerspectiveCamera(
-    fov, // fov = Field Of View
-    window.innerWidth / window.innerHeight, // aspect ratio
-    0.05, // near clipping plane
-    10000, // far clipping plane
-  );
-  var cameraLayer = 1;
-
-  // camera.title = name
-  // camera.layers.set(cameraLayer);
+function createPerspectiveCamera(
+  fov: number = 75,
+  aspect: number = window.innerWidth / window.innerHeight,
+  near: number = 0.05,
+  far: number = 1000,
+  name: string="Perspective Camera"
+) {
+  const camera: PerspectiveCamera = new PerspectiveCamera(fov, aspect, near, far);
+  const cameraLayer: number = 1;
+  camera.layers.set(cameraLayer);
+  camera.name = name
 
   return camera;
 }
-
 
 export { createPerspectiveCamera };
