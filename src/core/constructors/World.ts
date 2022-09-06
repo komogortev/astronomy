@@ -7,9 +7,13 @@ import { createScene } from '../components/scene';
 import { createPerspectiveCamera } from '../components/camera';
 import { createAmbientLight, createPointLight } from '../components/lights';
 import { Loop } from '../systems/Loop'
+import { Resizer } from '../systems/Resizer';
 
 import { createCube } from '../components/cube';
 import { Golem } from './Golem';
+import { Console } from 'console';
+
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 interface WorldSceneSettings {
   // id: number,
@@ -25,9 +29,9 @@ class WorldConstructor {
   stats: any;
   lilGui: any;
   timeSpeedSetting: any;
+  controls: any;
 
-
-  constructor(container: any) {
+  constructor(container: HTMLElement) {
     // initialize defined earlier properties
     this.container = container
     this.stats = new Stats();
@@ -39,18 +43,42 @@ class WorldConstructor {
     scene_ = createScene(renderer_);
     this.container.appendChild(renderer_.domElement);
 
-    const ambLight_ = createAmbientLight(0xffffff, .5);
-    const pointLight_ = createPointLight(0xffffff, 100);
-    scene_.add(ambLight_, pointLight_);
+    // const ambLight_ = createAmbientLight(0xffffff, .5);
+    // const pointLight_ = createPointLight(0xffffff, 100);
+    // scene_.add(ambLight_, pointLight_);
 
     // Create scene tools
     camera_ = createPerspectiveCamera();
-    camera_.position.set(0, 0, 20); // move the camera back
+    camera_.position.set(0, 0, 15); // move the camera back
     camera_.lookAt(0, 0, 0); // so we can view the scene center
 
-    loop_ = new Loop(camera_, scene_, renderer_);
+    // Setup reactive listeners/updaters
+    const resizer = new Resizer(this.container, camera_, renderer_);
+    //loop_ = new Loop(camera_, scene_, renderer_);
 
-    this.initialize_();
+    // this.initialize_();
+
+    this.controls = new OrbitControls(camera_, renderer_.domElement);
+
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene_.add(cube);
+
+    camera_.position.z = 5;
+
+    //golem = new Golem();
+    // golem = new createCube("test cube");
+    // scene_.add(golem);
+    // loop_.updatables.push(golem);
+    this.animate(cube);
+  }
+
+  animate(cube: any) {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    requestAnimationFrame(this.animate);
+    renderer_.render(scene_, camera_);
   }
 
   // Scene's objects setup
@@ -61,22 +89,14 @@ class WorldConstructor {
       .name('Time speed')
       .onChange((value: number) => { console.log(value) });
 
-   // golem = new Golem();
-    golem = new createCube("test cube")
-    loop_.updatables.push(golem);
-    //golem.mesh.position.set(0, 0, 0);
-    scene_.add(golem);
-    console.log("scene_", scene_);
-    renderer_.render(scene_, camera_);
-  }
 
-  render() {
-    // draw a single frame
-    renderer_.render(scene_, camera_);
+
+
+    loop_.updatables.push(cube);
   }
 
   start() {
-    loop_.start();
+    //loop_.start();
     console.log("World Scene started!");
   }
 
@@ -85,7 +105,7 @@ class WorldConstructor {
   }
 
   tick(delta: number) {
-    this.stats.update(delta);
+    // this.stats.update(delta);
   }
 }
 

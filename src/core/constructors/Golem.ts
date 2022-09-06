@@ -31,13 +31,14 @@ class Golem {
 
     this.golemMesh = new Mesh(this.golemGeometry, this.golemMaterial);
     this.golemMesh.name = 'Golem Mesh'
+    //this.golemMesh.mesh.position.set(0, 0, 0);
   }
 
   get mesh() {
     return this.golemMesh
   }
 
-  tick(delta) {
+  tick(delta: number) {
     this.golemMesh.rotation.x += 0.001
   }
 }

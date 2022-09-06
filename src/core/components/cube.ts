@@ -1,12 +1,12 @@
 import {
-  BoxBufferGeometry,
+  BoxGeometry,
   MathUtils,
   Mesh,
   MeshStandardMaterial,
 } from 'three';
 
 function createCube(name: string) {
-  const geometry = new BoxBufferGeometry(2, 2, 2);
+  const geometry = new BoxGeometry(2, 2, 2);
   const material = new MeshStandardMaterial({ color: 'purple' });
   const cube = new Mesh(geometry, material);
 

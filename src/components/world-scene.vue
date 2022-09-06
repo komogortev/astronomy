@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <component :is="element" :aria-label="ariaLabel" :disabled="isDisabled" class="m-5 p-y border-black">
-    <section id="scene-container" class="m-5 p-y border-black"></section>
+  <component :is="element" :aria-label="ariaLabel" :disabled="isDisabled">
+    <section id="scene-container"></section>
   </component>
 </template>

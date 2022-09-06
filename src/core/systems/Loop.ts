@@ -39,7 +39,6 @@ class Loop {
     for (const object of this.updatables) {
       if (object.tick) {
         object.tick(delta, this.updatables);
-        console.log(object)
       }
     }
   }
