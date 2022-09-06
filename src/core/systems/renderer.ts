@@ -5,7 +5,7 @@ function createRenderer() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFSoftShadowMap; // default THREE.PCFShadowMap
-  renderer.physicallyCorrectLights = true; // turn on physically correct lighting
+  renderer.physicallyCorrectLights = true; // turn on physically correct lighting (for...?)
 
   return renderer;
 }
