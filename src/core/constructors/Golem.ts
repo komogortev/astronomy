@@ -12,14 +12,14 @@ class Golem {
   radius: number;
   widthSegments: number;
   heightSegments: number;
-  golemGeometry: SphereGeometry;
-  golemMaterial: MeshNormalMaterial;
-  golemMesh: Mesh;
+  golemGeometry: any;
+  golemMaterial: any;
+  golemMesh: any;
 
   constructor() {
     this.radius = 0.05
-    this.widthSegments = 6
-    this.heightSegments = 6
+    this.widthSegments = 1
+    this.heightSegments = 1
 
     this.golemGeometry = new SphereGeometry(
       this.radius, this.widthSegments, this.heightSegments

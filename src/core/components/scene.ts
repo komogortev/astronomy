@@ -7,7 +7,7 @@ function createScene(renderer_: any) {
   const texture = textureLoader.load(
     bgUrl,
     () => {
-      const rt: WebGLCubeRenderTarget = new WebGLCubeRenderTarget(texture.image.height);
+      const rt = new WebGLCubeRenderTarget(texture.image.height);
       rt.fromEquirectangularTexture(renderer_, texture);
       scene.background = rt.texture;
     }

@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import GUI from 'lil-gui';
@@ -20,7 +21,7 @@ interface WorldSceneSettings {
 
 let renderer_: any, scene_: any, camera_: any, golem: any, loop_: any, textureLoader: any;
 
-class WorldConstructor implements WorldSceneSettings {
+class WorldConstructor {
   container: Element;
   stats: any;
   lilGui: any;
@@ -39,9 +40,9 @@ class WorldConstructor implements WorldSceneSettings {
     scene_ = createScene(renderer_, );
     this.container.appendChild(renderer_.domElement);
 
-    // const ambLight_ = createAmbientLight(0xffffff, .5);
-    // const pointLight_ = createPointLight(0xffffff, 100);
-    // scene_.add(ambLight_, pointLight_);
+    //const ambLight_ = createAmbientLight(0xffffff, .5);
+    //const pointLight_ = createPointLight(0xffffff, 100);
+    //scene_.add(ambLight_, pointLight_);
 
     // Create scene tools
     camera_ = createPerspectiveCamera();
@@ -51,14 +52,29 @@ class WorldConstructor implements WorldSceneSettings {
     // Setup reactive listeners/updaters
     const resizer = new Resizer(this.container, camera_, renderer_);
     loop_ = new Loop(camera_, scene_, renderer_);
-
     this.initialize_();
-
     this.controls = new OrbitControls(camera_, renderer_.domElement);
 
-    golem = new Golem();
-    scene_.add(golem.mesh);
-    loop_.updatables.push(golem);
+
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene_.add(cube);
+
+    camera_.position.z = 5;
+
+    //golem = new Golem();
+    // golem = new createCube("test cube");
+    // scene_.add(golem);
+    // loop_.updatables.push(golem);
+    this.animate(cube);
+  }
+
+  animate(cube: any) {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    requestAnimationFrame(this.animate);
+    renderer_.render(scene_, camera_);
   }
 
   // Scene's objects setup
@@ -68,6 +84,8 @@ class WorldConstructor implements WorldSceneSettings {
     this.lilGui.add(this.timeSpeedSetting, 'speed', -100, 100, 1)
       .name('Time speed')
       .onChange((value: number) => { console.log(value) });
+
+
   }
 
   start() {
