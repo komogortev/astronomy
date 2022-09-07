@@ -163,7 +163,7 @@ const state = reactive({
           tilt: 26.73,
           textureMap: '',
           emissive: 0xFAE5D3,
-          emissiveMap: '/assets/textures/solar/2k_saturn.jpg',
+          emissiveMap: '/assets/textures/solar/saturn/2k_saturn.jpg',
           emissiveIntensity: 0.001,
           children: {
             Titan: {
@@ -239,7 +239,7 @@ const state = reactive({
           rotation_period: { days: 0.71832 },
           tilt: 97.77,
           emissive: 0x2E86C1,
-          emissiveMap: '/assets/textures/solar/2k_uranus.jpg',
+          emissiveMap: '/assets/textures/solar/uranus/2k_uranus.jpg',
           emissiveIntensity: 0.001,
           children: {
             Titania: {
@@ -297,7 +297,7 @@ const state = reactive({
           rotation_period: { days: 0.67083 },
           tilt: 28.32,
           emissive: 0x154360,
-          emissiveMap: '/assets/textures/solar/2k_neptune.jpg',
+          emissiveMap: '/assets/textures/solar/neptune/2k_neptune.jpg',
           emissiveIntensity: 0.001,
           children: {
             Triton: {
