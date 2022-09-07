@@ -11,8 +11,7 @@ import {
   TextureLoader,
   SphereGeometry,
   Color,
-  Raycaster,
-  EllipseCurve
+  Raycaster
 } from 'three';
 import { AppSettings } from '../../globals';
 import useWorldStore from "../../stores/world";
@@ -28,33 +27,39 @@ const {
   getPlanetoidInfo
 } = useWorldStore();
 
-function createSolarGroup(camera: any) {
+function createSolarGroup() {
   // A group holds other objects but cannot be seen itself
-  const group = new Group();
+  const starGroup = new Group();
   const geometry = new SphereGeometry(1, 132, 132);
+  const sunChildren: { [index: string]: any } = solarSystemStore.value
 
-  Object.keys(solarSystemStore.value).forEach(key => {
-    const starMesh = decoratePlanetoid(geometry, getPlanetoidInfo(key))
-    group.add(starMesh);
+  Object.keys(solarSystemStore.value).forEach((key: any) => {
+    const planetoidInfo: { [key: string]: any } = getPlanetoidInfo(key)
+
+    const starMesh = decoratePlanetoid(
+      geometry,
+      planetoidInfo,
+      planetoidInfo.scale.x
+    )
+    starGroup.add(starMesh);
 
     // Create planet meshes
-    if (solarSystemStore.value[key].children) {
-      Object.keys(solarSystemStore.value[key].children).forEach(childKey => {
+    if (sunChildren[key].children) {
+      Object.keys(sunChildren[key].children).forEach(childKey => {
         const planetMesh = decoratePlanetoid(
           geometry,
           getPlanetoidInfo(childKey),
-          starMesh.scale.x,
-          camera
+          starMesh.scale.x
         )
-        group.add(planetMesh);
+        starGroup.add(planetMesh);
 
         // Create moon meshes
-        if (solarSystemStore.value[key].children[childKey].children) {
-          Object.keys(solarSystemStore.value[key].children[childKey].children).forEach(childKey2 => {
+        if (sunChildren[key].children[childKey].children) {
+          Object.keys(sunChildren[key].children[childKey].children).forEach(childKey2 => {
             const moonMesh = decoratePlanetoid(
               geometry,
               getPlanetoidInfo(childKey2),
-              planetMesh.scale.x,
+              planetMesh.scale.x
             )
             planetMesh.add(moonMesh);
           })
@@ -63,10 +68,11 @@ function createSolarGroup(camera: any) {
     }
   })
 
-  return group;
+  return starGroup;
 }
 
-function decoratePlanetoid(geometry, data, parentScale = 0, camera) {
+function decoratePlanetoid(geometry: any, data: any, parentScale: number = 0) {
+  const group = new Group();
   // 1. Create material according to planetoid data
   const sphereMaterial = data.emissive
     ? new MeshPhongMaterial({
@@ -126,10 +132,10 @@ function decoratePlanetoid(geometry, data, parentScale = 0, camera) {
     );
     athmosphereMesh.position.set(0, 0, 0);
     athmosphereMesh.rotation.z = data.tilt;
-    athmosphereMesh.tick = (delta) => {
-      // rotate athmosphereMesh in anticlockwise direction (+=)
-      athmosphereMesh.rotation.y += delta * radiansPerSecond * settings.value.timeSpeed;
-    };
+    // athmosphereMesh.tick = (delta: number) => {
+    //   // rotate athmosphereMesh in anticlockwise direction (+=)
+    //   athmosphereMesh.rotation.y += delta * radiansPerSecond * settings.value.timeSpeed;
+    // };
     sphereMesh.add(athmosphereMesh);
   }
 
@@ -138,10 +144,9 @@ function decoratePlanetoid(geometry, data, parentScale = 0, camera) {
     const poiGeometry = new SphereGeometry(0.005, 6, 6);
     const poiMaterial = new MeshBasicMaterial({ color: 0xff0000 });
 
-    data.POI.forEach(poi => {
+    data.POI.forEach((poi: any) => {
       let poiMesh = new Mesh(poiGeometry, poiMaterial);
-      poiMesh.name = 'POI'
-      poiMesh.title = poi.name
+      poiMesh.name = `POI: ${poi.name}`
 
       const cartPos = calcPosFromLatLngRad(
         poi.lat,
@@ -155,15 +160,14 @@ function decoratePlanetoid(geometry, data, parentScale = 0, camera) {
   }
 
   // each frame, animate sphereMesh
-  sphereMesh.tick = (delta) => {
-    // rotate planetoid in anticlockwise direction (+=)
-    sphereMesh.rotation.y += delta * radiansPerSecond * settings.value.timeSpeed;
-  };
+  // group.tick = (delta) => {
+  //   // rotate planetoid in anticlockwise direction (+=)
+  //   sphereMesh.rotation.y += delta * radiansPerSecond * settings.value.timeSpeed;
+  // };
 
-  return sphereMesh;
+  group.add(sphereMesh)
+
+  return group;
 }
-
-const curve = new EllipseCurve()
-
 
 export { createSolarGroup };

@@ -72,14 +72,13 @@ class WorldConstructor implements WorldSceneSettings {
     loop_.updatables.push(golem);
 
     // Create Solar System
-    solarGroup_ = createSolarGroup(camera_);
+    solarGroup_ = createSolarGroup();
 
     // Add system children to scene/loop_
     // *(account on just three categories of inheritance: star/planet/moon)
-    solarGroup_.children.forEach(mesh => {
-
+    solarGroup_.children.forEach((mesh: any) => {
       mesh.children
-        .forEach((m, i) => {
+        .forEach((m: any) => {
           // :1 moons/athmospheres/cities
           if (['athmosphereMap', 'POI'].includes(m.name)) {
             loop_.updatables.push(m)

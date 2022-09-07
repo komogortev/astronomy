@@ -25,6 +25,32 @@ interface PlanetoidSettings {
   athmosphereGroup?: Group;
 }
 
+interface planetoidInfoSettings {
+  nameId: string;
+  radius: { [key: string]: number };
+  distance: number;
+  orbital_period: { [key: string]: number };
+  rotation_period: { [key: string]: number };
+  tilt: number;
+  textureMap: string;
+  emissive: any,
+  emissiveMap: string;
+  emissiveIntensity: number;
+  displacementMap: string;
+  displacementScale: number;
+  bumpMap: string;
+  bumpScale: number;
+  specularMap: string;
+  shininess: number;
+  athmosphereMap: string;
+  athmosphereOpacity: number;
+  athmosphereDepth: number;
+  children: {},
+  POI: object[];
+  color: any;
+  scale: number;
+}
+
 class Planetoid implements PlanetoidSettings {
   radius: number;
   widthSegments: number;
@@ -39,7 +65,7 @@ class Planetoid implements PlanetoidSettings {
   planetoidAthmosphereMesh: any;
   athmosphereGroup?: Group;
 
-  constructor(planetoidInfo: object = {}) {
+  constructor(planetoidInfo: planetoidInfoSettings) {
     this.radius = 1;
     this.widthSegments = 24;
     this.heightSegments = 24;
@@ -52,13 +78,13 @@ class Planetoid implements PlanetoidSettings {
     if (planetoidInfo?.emissive) {
       // Internal glow
       this.planetoidMaterial = new MeshStandardMaterial({
-        emissive: planetoidInfo.emissive,
+        //emissive: planetoidInfo.emissive,
         emissiveMap: loader.load(planetoidInfo.emissiveMap),
         emissiveIntensity: 1,
       });
     } else {
       this.planetoidMaterial = new MeshPhongMaterial({
-        color: planetoidInfo.color ? planetoidInfo.color : '#ccc',
+        color: planetoidInfo.color ?? '#ccc',
         map: loader.load(planetoidInfo.textureMap),
       });
     }
@@ -104,12 +130,12 @@ class Planetoid implements PlanetoidSettings {
       this.athmosphereGroup = new Group();
       this.athmosphereGroup.name = 'Athmosphere node';
 
-      this.athmoplanetoidGeometry = new planetoidGeometry(
+      this.athmoplanetoidGeometry = new SphereGeometry(
         this.radius + planetoidInfo.athmosphereDepth, 50, 50
       )
 
       this.athmosphereMaterial = new MeshPhongMaterial({
-        map: 'models/solar-system/textures/earth/8k_earth_clouds.jpg',
+        //map: 'models/solar-system/textures/earth/8k_earth_clouds.jpg',
         transparent: true,
         opacity: 0.25
       });
@@ -119,10 +145,6 @@ class Planetoid implements PlanetoidSettings {
       this.athmosphereGroup.add(this.planetoidAthmosphereMesh)
       this.planetoidOrbit.add(this.athmosphereGroup)
     }
-  }
-
-  get camera() {
-    //return this.golemCamera
   }
 
   get parent() {
@@ -141,7 +163,7 @@ class Planetoid implements PlanetoidSettings {
     return this.planetoidMesh
   }
 
-  set visible(v) {
+  set visible(v: boolean) {
     // this._visible = v;
     // this.grid.visible = v;
     // this.axes.visible = v;

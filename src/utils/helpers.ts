@@ -41,26 +41,18 @@ export function calcPosFromLatLngRad(lat: number, lng: number, radius: number) {
  * @param {Object} mesh
  * @returns {Object} target position and scale
  */
-export function getTargetPositionScale(mesh = null) {
-  if (!mesh) {
-    //default values set to center of Scene
-    return {
-      p: [0, 0, 0],
-      s: 7
-    }
-  }
+// export function getTargetPositionScale(mesh: object = {p: [0, 0, 0], s: 7}) {
+//   const newPos = {
+//     p: [
+//       mesh.position.x,
+//       mesh.position.y,
+//       mesh.position.z,
+//     ],
+//     s: mesh.scale.z
+//   }
 
-  const newPos = {
-    p: [
-      mesh.position.x,
-      mesh.position.y,
-      mesh.position.z,
-    ],
-    s: mesh.scale.z
-  }
-
-  return newPos;
-}
+//   return newPos;
+// }
 
 /**
  * Colorize the console log parts for better visibility

@@ -326,7 +326,7 @@ const state = reactive({
   },
 });
 
-function _findObjectSection(object: any, sectionKey: string) {
+function _findObjectSection(object: any, sectionKey: string): () => {} {
   let result = null
 
   for (const key of Object.keys(object)) {
@@ -349,11 +349,11 @@ export default function useWorldStore() {
     return state.settings
   })
 
-  const setSolarState = (solar) => {
+  const setSolarState = (solar: any) => {
     state.solarSystemStore = solar
   }
 
-  const setTimeSpeed = (value) => {
+  const setTimeSpeed = (value: number) => {
     state.settings = { ...state.settings, timeSpeed: value }
   }
 
