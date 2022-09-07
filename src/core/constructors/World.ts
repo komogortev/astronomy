@@ -40,41 +40,26 @@ class WorldConstructor {
     scene_ = createScene(renderer_, );
     this.container.appendChild(renderer_.domElement);
 
-    //const ambLight_ = createAmbientLight(0xffffff, .5);
-    //const pointLight_ = createPointLight(0xffffff, 100);
-    //scene_.add(ambLight_, pointLight_);
+    const ambLight_ = createAmbientLight(0xffffff, .5);
+    const pointLight_ = createPointLight(0xffffff, 100);
+    scene_.add(ambLight_, pointLight_);
 
     // Create scene tools
     camera_ = createPerspectiveCamera();
-    camera_.position.set(0, 0, 15); // move the camera back
+    camera_.position.set(0, 0, 5); // move the camera back
     camera_.lookAt(0, 0, 0); // so we can view the scene center
 
     // Setup reactive listeners/updaters
     const resizer = new Resizer(this.container, camera_, renderer_);
     loop_ = new Loop(camera_, scene_, renderer_);
+
     this.initialize_();
+
     this.controls = new OrbitControls(camera_, renderer_.domElement);
 
-
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene_.add(cube);
-
-    camera_.position.z = 5;
-
-    //golem = new Golem();
-    // golem = new createCube("test cube");
-    // scene_.add(golem);
-    // loop_.updatables.push(golem);
-    this.animate(cube);
-  }
-
-  animate(cube: any) {
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    requestAnimationFrame(this.animate);
-    renderer_.render(scene_, camera_);
+    golem = new Golem();
+    scene_.add(golem.mesh);
+    loop_.updatables.push(golem);
   }
 
   // Scene's objects setup
@@ -84,8 +69,6 @@ class WorldConstructor {
     this.lilGui.add(this.timeSpeedSetting, 'speed', -100, 100, 1)
       .name('Time speed')
       .onChange((value: number) => { console.log(value) });
-
-
   }
 
   start() {
