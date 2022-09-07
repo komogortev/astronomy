@@ -23,7 +23,7 @@ const state = reactive({
       rotation_period: { days: 27 },
       tilt: 0,
       emissive: 0xFFFF00,
-      emissiveMap: '/assets/textures/solar/sun/2k_sun.jpg',
+      emissiveMap: '/astronomy/assets/textures/solar/sun/2k_sun.jpg',
       emissiveIntensity: 10,
       children: {
         'Mercury': {
@@ -34,9 +34,9 @@ const state = reactive({
           rotation_period: { days: 175.94 },
           tilt: 0.3,
           emissive: 0xA6ACAF,
-          emissiveMap: '/assets/textures/solar/mercury/mercury_2k.jpg',
+          emissiveMap: '/astronomy/assets/textures/solar/mercury/mercury_2k.jpg',
           emissiveIntensity: .5,
-          bumpMap: '/assets/textures/solar/mercury/mercury_bump.jpg',
+          bumpMap: '/astronomy/assets/textures/solar/mercury/mercury_bump.jpg',
           bumpScale: 0.0125,
         },
         'Venus': {
