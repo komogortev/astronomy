@@ -8,8 +8,6 @@ function createPerspectiveCamera(
   name: string="Perspective Camera"
 ) {
   const camera: PerspectiveCamera = new PerspectiveCamera(fov, aspect, near, far);
-  const cameraLayer: number = 1;
-  camera.layers.set(cameraLayer);
   camera.name = name
 
   return camera;
