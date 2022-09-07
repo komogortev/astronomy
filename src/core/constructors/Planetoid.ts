@@ -48,7 +48,7 @@ interface planetoidInfoSettings {
   children: {},
   POI: object[];
   color: any;
-  scale: number;
+  scale: { x: number, y: number, z: number };
 }
 
 class Planetoid implements PlanetoidSettings {

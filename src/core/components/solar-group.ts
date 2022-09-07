@@ -38,8 +38,7 @@ function createSolarGroup() {
 
     const starMesh = decoratePlanetoid(
       geometry,
-      planetoidInfo,
-      planetoidInfo.scale.x
+      planetoidInfo
     )
     starGroup.add(starMesh);
 
