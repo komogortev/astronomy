@@ -23,7 +23,7 @@ const state = reactive({
       rotation_period: { days: 27 },
       tilt: 0,
       emissive: 0xFFFF00,
-      emissiveMap: 'public/assets/textures/solar/sun/2k_sun.jpg',
+      emissiveMap: '/assets/textures/solar/sun/2k_sun.jpg',
       emissiveIntensity: 10,
       children: {
         'Mercury': {
@@ -34,9 +34,9 @@ const state = reactive({
           rotation_period: { days: 175.94 },
           tilt: 0.3,
           emissive: 0xA6ACAF,
-          emissiveMap: 'public/assets/textures/solar/mercury/mercury_2k.jpg',
+          emissiveMap: '/assets/textures/solar/mercury/mercury_2k.jpg',
           emissiveIntensity: .5,
-          bumpMap: 'public/assets/textures/solar/mercury/mercury_bump.jpg',
+          bumpMap: '/assets/textures/solar/mercury/mercury_bump.jpg',
           bumpScale: 0.0125,
         },
         'Venus': {
@@ -47,13 +47,13 @@ const state = reactive({
           rotation_period: { days: 243 },
           tilt: 3.86,
           emissive: 0xE67E22,
-          emissiveMap: 'public/assets/textures/solar/venus/2k_venus_surface.jpg',
+          emissiveMap: '/assets/textures/solar/venus/2k_venus_surface.jpg',
           emissiveIntensity: .25,
-          displacementMap: 'public/assets/textures/solar/venus/venus_bump.jpg',
+          displacementMap: '/assets/textures/solar/venus/venus_bump.jpg',
           displacementScale: 0.025,
-          bumpMap: 'public/assets/textures/solar/venus/venus_bump.jpg',
+          bumpMap: '/assets/textures/solar/venus/venus_bump.jpg',
           bumpScale: 0.125,
-          athmosphereMap: 'public/assets/textures/solar/venus/2k_venus_atmosphere.jpg',
+          athmosphereMap: '/assets/textures/solar/venus/2k_venus_atmosphere.jpg',
           athmosphereOpacity: 0.3,
           athmosphereDepth: 0.43,
         },
@@ -66,15 +66,15 @@ const state = reactive({
           tilt: 0.41,
           // textureMap: 'public/assets/textures/solar/earth/earth_daymap_8k.jpg',
           emissive: 0xEBF5FB,
-          emissiveMap: 'public/assets/textures/solar/earth/earth_daymap_8k.jpg',
+          emissiveMap: '/assets/textures/solar/earth/earth_daymap_8k.jpg',
           emissiveIntensity: .125,
-          displacementMap: 'public/assets/textures/solar/earth/earth_bump_8k.jpg',
+          displacementMap: '/assets/textures/solar/earth/earth_bump_8k.jpg',
           displacementScale: 0.15,
-          bumpMap: 'public/assets/textures/solar/earth/EarthNormal.png',
+          bumpMap: '/assets/textures/solar/earth/EarthNormal.png',
           bumpScale: 0.125,
-          specularMap: 'public/assets/textures/solar/earth/EarthSpec.png',
+          specularMap: '/assets/textures/solar/earth/EarthSpec.png',
           shininess: 0.5,
-          athmosphereMap: 'public/assets/textures/solar/earth/8k_earth_clouds.jpg',
+          athmosphereMap: '/assets/textures/solar/earth/8k_earth_clouds.jpg',
           athmosphereOpacity: 0.5,
           athmosphereDepth: 0.425,
           children: {
@@ -86,7 +86,7 @@ const state = reactive({
               rotation_period: { days: 0 },
               tilt: 5.145,
               emissive: 0xFEF9E7,
-              emissiveMap: 'public/assets/textures/solar/earth/moons/moon_2k.jpg',
+              emissiveMap: '/assets/textures/solar/earth/moons/moon_2k.jpg',
               emissiveIntensity: .00125,
             }
           },
@@ -126,9 +126,9 @@ const state = reactive({
           rotation_period: { days: 1.02 },
           tilt: 5.65,
           emissive: 0x943126,
-          emissiveMap: 'public/assets/textures/solar/mars/2k_mars.jpg',
+          emissiveMap: '/assets/textures/solar/mars/2k_mars.jpg',
           emissiveIntensity: .000125,
-          bumpMap: 'public/assets/textures/solar/mars/1k_mars_bump.jpg',
+          bumpMap: '/assets/textures/solar/mars/1k_mars_bump.jpg',
           bumpScale: 0.5,
         },
         'Jupiter': {
@@ -138,7 +138,7 @@ const state = reactive({
           orbital_period:  { days: 4380 },
           rotation_period: { days: 0.413575 },
           emissive: 0xFAE5D3,
-          emissiveMap: 'public/assets/textures/solar/jupiter/2k_jupiter.jpg',
+          emissiveMap: '/assets/textures/solar/jupiter/2k_jupiter.jpg',
           emissiveIntensity: .015,
           children: {
             Ganymede: {
@@ -149,7 +149,7 @@ const state = reactive({
               rotation_period: { days: 0 },
               tilt: 0.33,
               emissive: 0xFAE5D3,
-              emissiveMap: 'public/assets/textures/solar/jupiter/moons/Ganymede-blinn.jpg',
+              emissiveMap: '/assets/textures/solar/jupiter/moons/Ganymede-blinn.jpg',
               emissiveIntensity: .015,
             }
           }
@@ -163,7 +163,7 @@ const state = reactive({
           tilt: 26.73,
           textureMap: '',
           emissive: 0xFAE5D3,
-          emissiveMap: 'models/solar-system/textures/2k_saturn.jpg',
+          emissiveMap: '/assets/textures/solar/2k_saturn.jpg',
           emissiveIntensity: 0.001,
           children: {
             Titan: {
@@ -239,7 +239,7 @@ const state = reactive({
           rotation_period: { days: 0.71832 },
           tilt: 97.77,
           emissive: 0x2E86C1,
-          emissiveMap: 'models/solar-system/textures/2k_uranus.jpg',
+          emissiveMap: '/assets/textures/solar/2k_uranus.jpg',
           emissiveIntensity: 0.001,
           children: {
             Titania: {
@@ -297,7 +297,7 @@ const state = reactive({
           rotation_period: { days: 0.67083 },
           tilt: 28.32,
           emissive: 0x154360,
-          emissiveMap: 'models/solar-system/textures/2k_neptune.jpg',
+          emissiveMap: '/assets/textures/solar/2k_neptune.jpg',
           emissiveIntensity: 0.001,
           children: {
             Triton: {
