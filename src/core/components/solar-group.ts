@@ -79,22 +79,22 @@ function decoratePlanetoid(geometry: any, data: any, parentScale: number = 0) {
   const sphereMaterial = data.emissive
     ? new MeshPhongMaterial({
       emissive: data.emissive,
-      emissiveMap: loader.load(new URL(`${baseUrlPrefix}${data.emissiveMap}`).href),
+      emissiveMap: loader.load(`${baseUrlPrefix}${data.emissiveMap}`),
       emissiveIntensity: 1,
     })
     : new MeshPhongMaterial({
       color: data.color ? new Color(data.color)  : '#fff',
-      map: loader.load(new URL(`${baseUrlPrefix}${data.textureMap}`).href),
+      map: loader.load(`${baseUrlPrefix}${data.textureMap}`),
     })
 
   if (data.displacementMap) {
-    sphereMaterial.displacementMap = loader.load(new URL(`${baseUrlPrefix}${data.displacementMap}`).href)
+    sphereMaterial.displacementMap = loader.load(`${baseUrlPrefix}${data.displacementMap}`)
     sphereMaterial.displacementScale = data.displacementScale
     // sphereMaterial.wireframe = true;
   }
 
   if (data.bumpMap) {
-    sphereMaterial.bumpMap = loader.load(new URL(`${baseUrlPrefix}${data.bumpMap}`).href)
+    sphereMaterial.bumpMap = loader.load(`${baseUrlPrefix}${data.bumpMap}`)
     sphereMaterial.bumpScale = data.bumpScale
   }
 
