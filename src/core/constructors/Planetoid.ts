@@ -84,7 +84,7 @@ class Planetoid implements PlanetoidSettings {
       });
     } else {
       const imgUrl = new URL(planetoidInfo.textureMap, import.meta.url).href
-
+      console.log(imgUrl)
       this.planetoidMaterial = new MeshPhongMaterial({
         color: planetoidInfo.color ?? '#ccc',
         map: loader.load(imgUrl),

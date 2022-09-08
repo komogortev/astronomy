@@ -72,26 +72,27 @@ function createSolarGroup() {
 
 function decoratePlanetoid(geometry: any, data: any, parentScale: number = 0) {
   const group = new Group();
+
   // 1. Create material according to planetoid data
   const sphereMaterial = data.emissive
     ? new MeshPhongMaterial({
       emissive: data.emissive,
-      emissiveMap: loader.load(data.emissiveMap),
+      emissiveMap: loader.load(new URL(`${data.emissiveMap}`, import.meta.url).href),
       emissiveIntensity: 1,
     })
     : new MeshPhongMaterial({
       color: data.color ? new Color(data.color)  : '#fff',
-      map: loader.load(data.textureMap),
+      map: loader.load(new URL(`${data.textureMap}`, import.meta.url).href),
     })
 
   if (data.displacementMap) {
-    sphereMaterial.displacementMap = loader.load(data.displacementMap)
+    sphereMaterial.displacementMap = loader.load(new URL(`${data.displacementMap}`, import.meta.url).href)
     sphereMaterial.displacementScale = data.displacementScale
     // sphereMaterial.wireframe = true;
   }
 
   if (data.bumpMap) {
-    sphereMaterial.bumpMap = loader.load(data.bumpMap)
+    sphereMaterial.bumpMap = loader.load(new URL(`${data.bumpMap}`, import.meta.url).href)
     sphereMaterial.bumpScale = data.bumpScale
   }
 
