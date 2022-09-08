@@ -83,29 +83,24 @@ class Planetoid implements PlanetoidSettings {
         emissiveIntensity: 1,
       });
     } else {
-      const imgUrl = new URL(planetoidInfo.textureMap, import.meta.url).href
-      console.log(imgUrl)
       this.planetoidMaterial = new MeshPhongMaterial({
         color: planetoidInfo.color ?? '#ccc',
-        map: loader.load(imgUrl),
+        map: loader.load(planetoidInfo.textureMap),
       });
     }
 
     if (planetoidInfo.bumpMap) {
-      const imgUrl2 = new URL(planetoidInfo.bumpMap, import.meta.url).href
-      this.planetoidMaterial.bumpMap = loader.load(imgUrl2)
+      this.planetoidMaterial.bumpMap = loader.load(planetoidInfo.bumpMap)
       this.planetoidMaterial.bumpScale = planetoidInfo.bumpScale
     }
 
     if (planetoidInfo.displacementMap) {
-
-      this.planetoidMaterial.displacementMap = loader.load(imgUrl3)
+      this.planetoidMaterial.displacementMap = loader.load(planetoidInfo.displacementMap)
       this.planetoidMaterial.displacementScale = planetoidInfo.displacementScale
     }
 
     if (planetoidInfo.specularMap) {
-      const imgUrl4 = new URL(planetoidInfo.specularMap, import.meta.url).href
-      this.planetoidMaterial.specularMap = loader.load(imgUrl4)
+      this.planetoidMaterial.specularMap = loader.load(planetoidInfo.specularMap)
       this.planetoidMaterial.shininess = planetoidInfo.shininess
     }
 

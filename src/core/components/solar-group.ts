@@ -71,6 +71,7 @@ function createSolarGroup() {
 }
 
 const baseUrlPrefix = import.meta.env.PROD ? '/astronomy' : ''
+console.log(baseUrlPrefix)
 function decoratePlanetoid(geometry: any, data: any, parentScale: number = 0) {
   const group = new Group();
 
@@ -78,22 +79,22 @@ function decoratePlanetoid(geometry: any, data: any, parentScale: number = 0) {
   const sphereMaterial = data.emissive
     ? new MeshPhongMaterial({
       emissive: data.emissive,
-      emissiveMap: loader.load(new URL(`${baseUrlPrefix}${data.emissiveMap}`, import.meta.url).href),
+      emissiveMap: loader.load(new URL(`${baseUrlPrefix}${data.emissiveMap}`).href),
       emissiveIntensity: 1,
     })
     : new MeshPhongMaterial({
       color: data.color ? new Color(data.color)  : '#fff',
-      map: loader.load(new URL(`${baseUrlPrefix}${data.textureMap}`, import.meta.url).href),
+      map: loader.load(new URL(`${baseUrlPrefix}${data.textureMap}`).href),
     })
 
   if (data.displacementMap) {
-    sphereMaterial.displacementMap = loader.load(new URL(`${baseUrlPrefix}${data.displacementMap}`, import.meta.url).href)
+    sphereMaterial.displacementMap = loader.load(new URL(`${baseUrlPrefix}${data.displacementMap}`).href)
     sphereMaterial.displacementScale = data.displacementScale
     // sphereMaterial.wireframe = true;
   }
 
   if (data.bumpMap) {
-    sphereMaterial.bumpMap = loader.load(new URL(`${baseUrlPrefix}${data.bumpMap}`, import.meta.url).href)
+    sphereMaterial.bumpMap = loader.load(new URL(`${baseUrlPrefix}${data.bumpMap}`).href)
     sphereMaterial.bumpScale = data.bumpScale
   }
 
