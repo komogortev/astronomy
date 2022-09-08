@@ -98,7 +98,7 @@ class Planetoid implements PlanetoidSettings {
     }
 
     if (planetoidInfo.displacementMap) {
-      const imgUrl3 = new URL(planetoidInfo.displacementMap, import.meta.url).href
+
       this.planetoidMaterial.displacementMap = loader.load(imgUrl3)
       this.planetoidMaterial.displacementScale = planetoidInfo.displacementScale
     }
