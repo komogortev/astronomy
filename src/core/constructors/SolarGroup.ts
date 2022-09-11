@@ -25,29 +25,29 @@ const {
   getPlanetoidInfo
 } = useWorldStore();
 
-class SolarGroup {
+class SolarGroup extends Group {
   starInfo: any;
-  starGroup: any;
   protected geometry: any;
 
   constructor(name: string) {
+    super();
+
     this.starInfo = getPlanetoidInfo(name);
-    this.starGroup = new Group();
     this.geometry = new SphereGeometry(1, 132, 132);
 
     this.initialize();
   }
 
   initialize(): void {
-    const starMesh = decoratePlanetoid(
+    const starGroup: any = decoratePlanetoid(
       this.geometry,
       this.starInfo
     )
 
-    this.initializeSatellites(starMesh, this.starInfo);
+    this.initializeSatellites(starGroup, this.starInfo);
 
 
-    this.starGroup.add(starMesh);
+    this.add(starGroup);
   }
 
   initializeSatellites(parent: any, parentInfo: any): void {
@@ -72,6 +72,7 @@ const baseUrlPrefix = import.meta.env.PROD ? '/astronomy' : '';
 
 function decoratePlanetoid(geometry: any, data: any, parentScale: number = 0) {
   const group: { [k: string]: any } = new Group();
+  group.name = data.nameId
 
   // 1. Create material according to planetoid data
   if (data.hasOwnProperty('displacementMap')) {}
@@ -162,7 +163,7 @@ function decoratePlanetoid(geometry: any, data: any, parentScale: number = 0) {
   // each frame, animate sphereMesh
   group.tick = (delta: number) => {
     // rotate planetoid in anticlockwise direction (+=)
-    sphereMesh.rotation.y += delta * radiansPerSecond * settings.value.timeSpeed;
+    group.rotation.y += delta * radiansPerSecond * settings.value.timeSpeed;
   };
 
   group.add(sphereMesh)

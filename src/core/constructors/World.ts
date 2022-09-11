@@ -85,19 +85,22 @@ class WorldConstructor implements WorldSceneSettings {
     console.log(solarGroup_)
     // Add system children to scene/loop_
     // *(account on just three categories of inheritance: star/planet/moon)
-    solarGroup_.starGroup.children.forEach((mesh: any) => {
-      mesh.children
+    solarGroup_.children.forEach((child: any) => {
+      // :1 add planetoid to animation loop
+      loop_.updatables.push(child);
+      console.log(child)
+
+      // :2 moons/athmospheres/cities
+      child.children
         .forEach((m: any) => {
-          // :1 moons/athmospheres/cities
           if (['athmosphereMap', 'POI'].includes(m.name)) {
             loop_.updatables.push(m)
           }
         })
-      // :2 planets
-      loop_.updatables.push(mesh);
+
     });
     // :3 star
-    scene_.add(solarGroup_.starGroup);
+    scene_.add(solarGroup_);
   }
 
   start() {
