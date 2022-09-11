@@ -38,9 +38,8 @@ class Golem {
     return this.golemMesh
   }
 
-  tick(delta: number) {
+  tick(delta: number): void {
     this.golemMesh.rotation.x += 0.001
-    //console.log(this.golemMesh.rotation.x)
   }
 }
 

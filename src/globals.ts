@@ -29,7 +29,7 @@ export const AppSettings = Object.freeze({
     cameraLayer: 1,
   },
   AU: {
-    km: 15000000,//0
+    km: 150000000,
     mi: 93000000
   }
 });
